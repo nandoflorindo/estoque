@@ -10,272 +10,296 @@
             --deus: #DAA520; --rubin: #a970ff; --green: #00e676; --red: #ff4b4b; --blue: #00d4ff;
         }
         
-        body { background: var(--dark-bg); color: #e0e0e0; font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 20px; }
-        .container { max-width: 1200px; margin: auto; }
+        body { background: var(--dark-bg); color: #e0e0e0; font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 15px; }
+        .container { max-width: 1100px; margin: auto; }
         
-        .header-main { text-align: center; margin-bottom: 30px; }
-        .header-main h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 4px; margin: 0; font-size: 2rem; }
-
-        /* CARDS SUPERIORES - ALINHADOS */
-        .grid-financeiro { 
-            display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-bottom: 25px; 
+        .header-main { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #222;
         }
-        .card-f { background: var(--card-bg); border: 1px solid var(--border); padding: 15px; text-align: center; border-radius: 10px; }
-        .card-f .label { font-size: 0.65rem; text-transform: uppercase; color: #888; margin-bottom: 5px; display: block; }
-        .card-f .val { font-size: 1.1rem; font-weight: bold; }
+        .header-main h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin: 0; font-size: 1.2rem; font-weight: 900; }
 
-        /* ESTOQUE COM DESIGN REFINADO */
-        .grid-estoque { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
-        .est-card { 
-            background: linear-gradient(145deg, #1a1a1a, #111); 
-            border: 1px solid var(--border); padding: 15px 25px; 
-            border-radius: 12px; display: flex; justify-content: space-between; align-items: center;
+        .filter-bar { 
+            display: flex; align-items: center; justify-content: center; gap: 8px; 
+            background: #111; padding: 8px; border-radius: 8px; border: 1px solid #222; margin-bottom: 20px;
         }
-        .est-card .name { font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-        .est-card .amount { font-size: 1.4rem; font-weight: 800; color: #fff; }
+        .filter-bar input { 
+            background: transparent; border: 1px solid #333; color: #fff; font-size: 0.75rem; 
+            padding: 4px; border-radius: 4px; color-scheme: dark; outline: none;
+        }
+        .btn-mini { 
+            background: #222; border: 1px solid #333; color: #888; padding: 4px 8px; 
+            font-size: 0.65rem; border-radius: 4px; cursor: pointer; text-transform: uppercase;
+        }
+        .btn-mini:hover { color: #fff; border-color: var(--gold); }
+        .btn-mini.red { color: #ff4b4b; border-color: #441111; }
 
-        /* CALCULADORAS */
-        .calc-section { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px; }
-        .calc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 15px; overflow: hidden; position: relative; }
+        .blur { filter: blur(10px); opacity: 0.2; pointer-events: none; }
+
+        .grid-financeiro { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 15px; }
+        .card-f { background: var(--card-bg); border: 1px solid var(--border); padding: 12px; text-align: center; border-radius: 8px; }
+        .card-f .label { font-size: 0.6rem; text-transform: uppercase; color: #666; margin-bottom: 4px; display: block; }
+        .card-f .val { font-size: 1rem; font-weight: 800; }
+
+        .grid-estoque { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .est-card { border-radius: 8px; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; background: #161616; border: 1px solid #333; border-left-width: 4px; }
+        .est-card .amount { font-size: 1.2rem; font-weight: 900; }
+        .baixo-estoque { color: var(--red) !important; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        .calc-section { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .calc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+        .calc-header { padding: 8px 15px; background: #000; display: flex; justify-content: space-between; align-items: center; }
+        .calc-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
+        .calc-sub { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; border: 1px solid #222; text-align: center; }
         
-        /* SUB-INFO DE GIRO (DISCRETO) */
-        .giro-info { display: flex; background: #000; border-bottom: 1px solid #222; }
-        .giro-item { flex: 1; padding: 8px; text-align: center; font-size: 0.75rem; border-right: 1px solid #222; }
-        .giro-item:last-child { border-right: none; }
-        .giro-item span { color: #666; margin-right: 5px; }
-
-        .calc-header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .server-title { font-weight: 900; font-size: 1.2rem; text-transform: uppercase; }
-
-        .calc-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px 20px 20px; }
-        .calc-sub { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border: 1px solid #222; }
-        .calc-sub h3 { font-size: 0.7rem; color: #888; text-align: center; margin: 0 0 15px 0; text-transform: uppercase; }
-
-        /* INPUTS */
-        .input-group { margin-bottom: 12px; }
-        .input-group label { font-size: 0.6rem; color: var(--gold); display: block; margin-bottom: 4px; text-transform: uppercase; }
-        input { 
-            width: 100%; padding: 10px; background: #0a0a0a; border: 1px solid #333; color: #fff; 
-            border-radius: 6px; text-align: center; font-weight: bold; font-size: 1rem; box-sizing: border-box;
+        .calc-sub label { display: block; font-size: 0.55rem; color: #666; text-transform: uppercase; margin-bottom: 3px; font-weight: bold; }
+        
+        input[type="number"] { 
+            width: 100%; padding: 6px; background: #0a0a0a; border: 1px solid #333; 
+            color: #fff; border-radius: 4px; text-align: center; font-weight: bold; font-size: 0.85rem; margin-bottom: 4px;
         }
-        input:focus { border-color: var(--gold); outline: none; }
 
-        /* BOTÕES DE CÓPIA E RESET */
-        .btns-topo { display: flex; gap: 5px; }
-        .btn-top { 
-            border: none; padding: 6px 10px; border-radius: 4px; font-size: 10px; 
-            font-weight: bold; cursor: pointer; text-transform: uppercase; opacity: 0.8;
-        }
-        .btn-top:hover { opacity: 1; }
-        .btn-res { background: #331111; color: var(--red); border: 1px solid var(--red); }
-        .btn-copy-c { background: #112233; color: var(--blue); border: 1px solid var(--blue); }
-        .btn-copy-v { background: #113322; color: var(--green); border: 1px solid var(--green); }
+        .btn-action { width: 100%; border: none; padding: 6px; border-radius: 4px; font-size: 0.6rem; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .btn-c { background: #112233; color: var(--blue); border: 1px solid var(--blue); margin-top: 3px; }
+        .btn-v { background: #113322; color: var(--green); border: 1px solid var(--green); margin-top: 3px; }
+        .btn-r { background: #1a0a0a; color: #666; font-size: 0.5rem; padding: 2px 6px; border: 1px solid #333; }
 
-        /* MARGEM COLORIDA - ESTILO ANTIGO VOLTOU */
-        .margin-footer { 
-            padding: 12px; text-align: center; font-weight: 800; font-size: 0.85rem; 
-            background: rgba(0,0,0,0.5); border-top: 1px solid #333; transition: 0.3s;
-        }
-        .margin-positive { border-top: 2px solid var(--green); color: var(--green); }
-        .margin-negative { border-top: 2px solid var(--red); color: var(--red); }
+        .dashboard-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .secao-tab { background: var(--card-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; }
+        .secao-tab h2 { font-size: 0.7rem; color: #555; text-transform: uppercase; margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        td { padding: 8px; border-bottom: 1px solid #222; }
 
-        /* HISTÓRICO */
-        .dashboard-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .secao-tab { background: var(--card-bg); border: 1px solid var(--border); padding: 20px; border-radius: 12px; }
-        .secao-tab h2 { font-size: 0.8rem; color: #666; text-transform: uppercase; margin-top: 0; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-        td { padding: 10px; border-bottom: 1px solid #222; }
-
-        @media (max-width: 900px) { .grid-financeiro { grid-template-columns: repeat(3, 1fr); } .calc-section { grid-template-columns: 1fr; } }
+        @media (max-width: 800px) { .grid-financeiro { grid-template-columns: 1fr 1fr; } .calc-section { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header-main"><h1>📊 NANDO COINS PRO</h1></div>
+    <div class="header-main">
+        <h1>📊 NANDO COINS</h1>
+        <button class="btn-mini" onclick="togglePrivacy()">👁️ PRIVACIDADE</button>
+    </div>
+
+    <div class="filter-bar">
+        <span style="font-size:0.6rem; color:#555; text-transform: uppercase; font-weight: bold;">Filtro:</span>
+        <input type="date" id="dateStart" onchange="applyGlobalFilter()">
+        <span style="color:#333">/</span>
+        <input type="date" id="dateEnd" onchange="applyGlobalFilter()">
+        <button class="btn-mini" onclick="setPeriod('today')">Hoje</button>
+        <button class="btn-mini" onclick="setPeriod('week')">7D</button>
+        <button class="btn-mini red" onclick="clearFilter()">Limpar</button>
+    </div>
 
     <div class="grid-financeiro">
-        <div class="card-f"><span class="label">Investido</span><span id="totalGasto" class="val" style="color:var(--red)">R$ 0,00</span></div>
-        <div class="card-f"><span class="label">Recebido</span><span id="totalRecebido" class="val" style="color:var(--green)">R$ 0,00</span></div>
-        <div class="card-f"><span class="label">Lucro Líquido</span><span id="lucroTotal" class="val" style="color:var(--gold)">R$ 0,00</span></div>
-        <div class="card-f"><span class="label">Giro Compra</span><span id="coinsCompradas" class="val">0</span></div>
-        <div class="card-f"><span class="label">Giro Venda</span><span id="coinsVendidas" class="val">0</span></div>
+        <div class="card-f"><span class="label">Investido</span><span id="totalGasto" class="val" style="color:var(--red)">R$ 0</span></div>
+        <div class="card-f"><span class="label">Recebido</span><span id="totalRecebido" class="val" style="color:var(--green)">R$ 0</span></div>
+        <div class="card-f"><span class="label">Lucro</span><span id="lucroTotal" class="val" style="color:var(--gold)">R$ 0</span></div>
+        <div class="card-f"><span class="label">Giro (C)</span><span id="coinsCompradas" class="val">0</span></div>
+        <div class="card-f"><span class="label">Giro (V)</span><span id="coinsVendidas" class="val">0</span></div>
     </div>
 
     <div class="grid-estoque">
-        <div class="est-card" style="border-left: 5px solid var(--deus);">
-            <span class="name" style="color:var(--deus)">Estoque DeusOT</span>
+        <div class="est-card" style="border-left-color: var(--deus);">
+            <span style="font-size:0.7rem; font-weight:bold; color:var(--deus)">DEUSOT</span>
             <span id="estDeus" class="amount">0</span>
         </div>
-        <div class="est-card" style="border-left: 5px solid var(--rubin);">
-            <span class="name" style="color:var(--rubin)">Estoque RubinOT</span>
+        <div class="est-card" style="border-left-color: var(--rubin);">
+            <span style="font-size:0.7rem; font-weight:bold; color:var(--rubin)">RUBINOT</span>
             <span id="estRubin" class="amount">0</span>
         </div>
     </div>
 
     <div class="calc-section">
         <div class="calc-box">
-            <div class="giro-info">
-                <div class="giro-item"><span>COMPRADAS:</span><b id="buyDeusTotal">0</b></div>
-                <div class="giro-item"><span>VENDIDAS:</span><b id="saleDeusTotal">0</b></div>
-            </div>
             <div class="calc-header">
-                <span class="server-title" style="color:var(--deus)">DEUSOT</span>
-                <div class="btns-topo">
-                    <button class="btn-top btn-copy-c" onclick="copyQuote('Deus', 'compra')">Compra</button>
-                    <button class="btn-top btn-copy-v" onclick="copyQuote('Deus', 'venda')">Venda</button>
-                    <button class="btn-top btn-res" onclick="resetCalc('Deus')">Reset</button>
-                </div>
+                <span style="font-size:0.7rem; font-weight:900; color:var(--deus)">DEUSOT</span>
+                <button class="btn-r" onclick="resetCalc('Deus')">RESET</button>
             </div>
             <div class="calc-group">
                 <div class="calc-sub">
-                    <h3>🛒 Compra</h3>
-                    <div class="input-group"><label>Preço 1k</label><input type="number" id="buyUnitDeus" value="70.00" oninput="calculate('Deus', 'B')"></div>
-                    <div class="input-group"><label>Qtd</label><input type="number" id="buyQtyDeus" placeholder="0" oninput="calculate('Deus', 'B')"></div>
-                    <div class="input-group"><label>Total R$</label><input type="number" id="buyTotalDeus" oninput="calculate('Deus', 'BT')"></div>
+                    <label>🛒 Compra 1k</label>
+                    <input type="number" id="buyUnitDeus" value="70.00" oninput="calculate('Deus', 'Q')">
+                    <label>Coins</label>
+                    <input type="number" id="buyQtyDeus" placeholder="0" oninput="calculate('Deus', 'Q')">
+                    <label>Total R$</label>
+                    <input type="number" id="buyTotalDeus" placeholder="0.00" oninput="calculate('Deus', 'V')">
+                    <button class="btn-action btn-c" onclick="copyQuote('Deus', 'compra')">COPIAR COMPRA</button>
                 </div>
                 <div class="calc-sub">
-                    <h3>💰 Venda</h3>
-                    <div class="input-group"><label>Preço 1k</label><input type="number" id="saleUnitDeus" value="79.00" oninput="calculate('Deus', 'S')"></div>
-                    <div class="input-group"><label>Qtd</label><input type="number" id="saleQtyDeus" placeholder="0" oninput="calculate('Deus', 'S')"></div>
-                    <div class="input-group"><label>Receber R$</label><input type="number" id="saleTotalDeus" oninput="calculate('Deus', 'ST')"></div>
+                    <label>💰 Venda 1k</label>
+                    <input type="number" id="saleUnitDeus" value="79.00" oninput="calculate('Deus', 'Q')">
+                    <label>Coins</label>
+                    <input type="number" id="saleQtyDeus" placeholder="0" oninput="calculate('Deus', 'Q')">
+                    <label>Receber R$</label>
+                    <input type="number" id="saleTotalDeus" placeholder="0.00" oninput="calculate('Deus', 'V')">
+                    <button class="btn-action btn-v" onclick="copyQuote('Deus', 'venda')">COPIAR VENDA</button>
                 </div>
             </div>
-            <div id="marginDeus" class="margin-footer margin-positive">MARGEM: R$ 9.00/1k (12.86%)</div>
         </div>
 
         <div class="calc-box">
-            <div class="giro-info">
-                <div class="giro-item"><span>COMPRADAS:</span><b id="buyRubinTotal">0</b></div>
-                <div class="giro-item"><span>VENDIDAS:</span><b id="saleRubinTotal">0</b></div>
-            </div>
             <div class="calc-header">
-                <span class="server-title" style="color:var(--rubin)">RUBINOT</span>
-                <div class="btns-topo">
-                    <button class="btn-top btn-copy-c" onclick="copyQuote('Rubin', 'compra')">Compra</button>
-                    <button class="btn-top btn-copy-v" onclick="copyQuote('Rubin', 'venda')">Venda</button>
-                    <button class="btn-top btn-res" onclick="resetCalc('Rubin')">Reset</button>
-                </div>
+                <span style="font-size:0.7rem; font-weight:900; color:var(--rubin)">RUBINOT</span>
+                <button class="btn-r" onclick="resetCalc('Rubin')">RESET</button>
             </div>
             <div class="calc-group">
                 <div class="calc-sub">
-                    <h3>🛒 Compra</h3>
-                    <div class="input-group"><label>Preço 1k</label><input type="number" id="buyUnitRubin" value="81.00" oninput="calculate('Rubin', 'B')"></div>
-                    <div class="input-group"><label>Qtd</label><input type="number" id="buyQtyRubin" placeholder="0" oninput="calculate('Rubin', 'B')"></div>
-                    <div class="input-group"><label>Total R$</label><input type="number" id="buyTotalRubin" oninput="calculate('Rubin', 'BT')"></div>
+                    <label>🛒 Compra 1k</label>
+                    <input type="number" id="buyUnitRubin" value="81.00" oninput="calculate('Rubin', 'Q')">
+                    <label>Coins</label>
+                    <input type="number" id="buyQtyRubin" placeholder="0" oninput="calculate('Rubin', 'Q')">
+                    <label>Total R$</label>
+                    <input type="number" id="buyTotalRubin" placeholder="0.00" oninput="calculate('Rubin', 'V')">
+                    <button class="btn-action btn-c" onclick="copyQuote('Rubin', 'compra')">COPIAR COMPRA</button>
                 </div>
                 <div class="calc-sub">
-                    <h3>💰 Venda</h3>
-                    <div class="input-group"><label>Preço 1k</label><input type="number" id="saleUnitRubin" value="85.00" oninput="calculate('Rubin', 'S')"></div>
-                    <div class="input-group"><label>Qtd</label><input type="number" id="saleQtyRubin" placeholder="0" oninput="calculate('Rubin', 'S')"></div>
-                    <div class="input-group"><label>Receber R$</label><input type="number" id="saleTotalRubin" oninput="calculate('Rubin', 'ST')"></div>
+                    <label>💰 Venda 1k</label>
+                    <input type="number" id="saleUnitRubin" value="85.00" oninput="calculate('Rubin', 'Q')">
+                    <label>Coins</label>
+                    <input type="number" id="saleQtyRubin" placeholder="0" oninput="calculate('Rubin', 'Q')">
+                    <label>Receber R$</label>
+                    <input type="number" id="saleTotalRubin" placeholder="0.00" oninput="calculate('Rubin', 'V')">
+                    <button class="btn-action btn-v" onclick="copyQuote('Rubin', 'venda')">COPIAR VENDA</button>
                 </div>
             </div>
-            <div id="marginRubin" class="margin-footer margin-positive">MARGEM: R$ 4.00/1k (4.94%)</div>
         </div>
     </div>
 
     <div class="dashboard-tables">
-        <div class="secao-tab"><h2>🛒 ÚLTIMAS COMPRAS</h2><table id="tabCompras"><tbody></tbody></table></div>
-        <div class="secao-tab"><h2>💰 ÚLTIMAS VENDAS</h2><table id="tabVendas"><tbody></tbody></table></div>
+        <div class="secao-tab"><h2>COMPRAS</h2><table id="tabCompras"><tbody></tbody></table></div>
+        <div class="secao-tab"><h2>VENDAS</h2><table id="tabVendas"><tbody></tbody></table></div>
     </div>
 </div>
 
 <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbzWNrfNxxFw5qlG5UITgyN8LYhBUAGFipSaRaFLxzW5xF5rBTuY5fJnflshDunjCN2D3g/exec";
     const defaults = { Deus: { buy: 70, sale: 79 }, Rubin: { buy: 81, sale: 85 } };
+    let DATA_MASTER = null;
 
     async function load() {
         try {
             const res = await fetch(API_URL);
-            const d = await res.json();
-            let g = 0, v = 0, l = 0, totalC = 0, totalV = 0;
-            let servC = { Deus: 0, Rubin: 0 }, servV = { Deus: 0, Rubin: 0 };
-            
-            d.resumo.forEach(r => {
-                const est = parseFloat(r.estoque_atual) || 0;
-                const serv = r.servidor.toLowerCase().includes("deus") ? "Deus" : "Rubin";
-                document.getElementById('est' + serv).innerText = est.toLocaleString('pt-BR');
-                g += parseFloat(r.total_gasto) || 0; v += parseFloat(r.total_recebido) || 0; l += parseFloat(r.lucro) || 0;
-            });
-
-            d.compras.forEach(c => {
-                const q = parseFloat(c.quantidade) || 0; totalC += q;
-                if(c.servidor.toLowerCase().includes("deus")) servC.Deus += q; else servC.Rubin += q;
-            });
-
-            d.vendas.forEach(s => {
-                const q = parseFloat(s.quantidade) || 0; totalV += q;
-                if(s.servidor.toLowerCase().includes("deus")) servV.Deus += q; else servV.Rubin += q;
-            });
-
-            document.getElementById('totalGasto').innerText = g.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            document.getElementById('totalRecebido').innerText = v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            document.getElementById('lucroTotal').innerText = l.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            document.getElementById('coinsCompradas').innerText = totalC.toLocaleString('pt-BR');
-            document.getElementById('coinsVendidas').innerText = totalV.toLocaleString('pt-BR');
-
-            document.getElementById('buyDeusTotal').innerText = servC.Deus.toLocaleString('pt-BR');
-            document.getElementById('saleDeusTotal').innerText = servV.Deus.toLocaleString('pt-BR');
-            document.getElementById('buyRubinTotal').innerText = servC.Rubin.toLocaleString('pt-BR');
-            document.getElementById('saleRubinTotal').innerText = servV.Rubin.toLocaleString('pt-BR');
-
-            const row = (i, f) => `<tr><td style="color:${i.servidor.toLowerCase().includes('deus')?'var(--deus)':'var(--rubin)'}; font-weight:bold;">${i.servidor}</td><td>${parseFloat(i.quantidade).toLocaleString('pt-BR')}</td><td>R$ ${parseFloat(i[f]).toFixed(2)}</td></tr>`;
-            document.querySelector("#tabCompras tbody").innerHTML = d.compras.slice(0, 5).map(c => row(c, "total_pago")).join('');
-            document.querySelector("#tabVendas tbody").innerHTML = d.vendas.slice(0, 5).map(s => row(s, "total_recebido")).join('');
+            DATA_MASTER = await res.json();
+            applyGlobalFilter();
         } catch (e) { console.error(e); }
     }
 
-    function calculate(s, modo) {
-        const isBuy = modo.startsWith('B');
-        const type = isBuy ? 'buy' : 'sale';
-        const unit = parseFloat(document.getElementById(type + 'Unit' + s).value) || 0;
-        const qtyEl = document.getElementById(type + 'Qty' + s);
-        const totalEl = document.getElementById(type + 'Total' + s);
+    function setPeriod(mode) {
+        const s = document.getElementById('dateStart');
+        const e = document.getElementById('dateEnd');
+        const today = new Date().toISOString().split('T')[0];
+        e.value = today;
+        if (mode === 'today') s.value = today;
+        else { let d = new Date(); d.setDate(d.getDate()-7); s.value = d.toISOString().split('T')[0]; }
+        applyGlobalFilter();
+    }
 
-        if (modo === 'B' || modo === 'S') {
-            totalEl.value = ((parseFloat(qtyEl.value) || 0) / 1000 * unit).toFixed(2);
+    function clearFilter() {
+        document.getElementById('dateStart').value = "";
+        document.getElementById('dateEnd').value = "";
+        applyGlobalFilter();
+    }
+
+    function applyGlobalFilter() {
+        if (!DATA_MASTER) return;
+        const start = document.getElementById('dateStart').value;
+        const end = document.getElementById('dateEnd').value;
+        const filtrar = (l) => l.filter(i => {
+            const d = i.data.split('T')[0];
+            return (!start || d >= start) && (!end || d <= end);
+        });
+
+        const cF = filtrar(DATA_MASTER.compras);
+        const vF = filtrar(DATA_MASTER.vendas);
+        let inv=0, rec=0, gC=0, gV=0;
+        cF.forEach(c => { inv += parseFloat(c.total_pago); gC += parseFloat(c.quantidade); });
+        vF.forEach(v => { rec += parseFloat(v.total_recebido); gV += parseFloat(v.quantidade); });
+
+        document.getElementById('totalGasto').innerText = inv.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+        document.getElementById('totalRecebido').innerText = rec.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+        document.getElementById('lucroTotal').innerText = (rec - inv).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+        document.getElementById('coinsCompradas').innerText = gC.toLocaleString('pt-BR');
+        document.getElementById('coinsVendidas').innerText = gV.toLocaleString('pt-BR');
+
+        DATA_MASTER.resumo.forEach(r => {
+            const serv = r.servidor.toLowerCase().includes("deus") ? "Deus" : "Rubin";
+            const val = parseFloat(r.estoque_atual);
+            const el = document.getElementById('est' + serv);
+            el.innerText = val.toLocaleString('pt-BR');
+            el.classList.toggle('baixo-estoque', val < 2000);
+        });
+
+        const row = (i, f) => {
+            const sName = i.servidor.toLowerCase().includes('deus') ? 'DeusOT' : 'RubinOT';
+            const qty = parseFloat(i.quantidade);
+            const displayQty = qty < 1000 ? qty.toString() : (qty / 1000).toFixed(1) + 'k';
+            return `<tr><td style="color:#444;font-size:0.6rem">${i.data.split('T')[0].slice(5)}</td><td style="font-weight:bold;color:${i.servidor.toLowerCase().includes('deus')?'var(--deus)':'var(--rubin)'}">${sName}</td><td class="val">${displayQty}</td><td class="val">R$${parseFloat(i[f]).toFixed(0)}</td></tr>`;
+        };
+        document.querySelector("#tabCompras tbody").innerHTML = cF.slice(0, 8).map(c => row(c, 'total_pago')).join('');
+        document.querySelector("#tabVendas tbody").innerHTML = vF.slice(0, 8).map(v => row(v, 'total_recebido')).join('');
+    }
+
+    function calculate(s, modo) {
+        const bUnit = parseFloat(document.getElementById('buyUnit' + s).value) || 0;
+        const sUnit = parseFloat(document.getElementById('saleUnit' + s).value) || 0;
+        const bQtyInput = document.getElementById('buyQty' + s);
+        const bValInput = document.getElementById('buyTotal' + s);
+        const sQtyInput = document.getElementById('saleQty' + s);
+        const sValInput = document.getElementById('saleTotal' + s);
+
+        if (modo === 'Q') {
+            bValInput.value = (parseFloat(bQtyInput.value) / 1000 * bUnit).toFixed(2);
+            sValInput.value = (parseFloat(sQtyInput.value) / 1000 * sUnit).toFixed(2);
         } else {
-            if (unit > 0) {
-                let cash = parseFloat(totalEl.value) || 0;
-                let adjustedQty = Math.floor((cash / unit * 1000) / 25) * 25;
-                qtyEl.value = adjustedQty;
-                totalEl.dataset.realValue = (adjustedQty / 1000 * unit).toFixed(2);
+            if (bUnit > 0) {
+                let qtyB = Math.floor((parseFloat(bValInput.value) / bUnit * 1000) / 25) * 25;
+                bQtyInput.value = qtyB;
+                bValInput.dataset.real = (qtyB / 1000 * bUnit).toFixed(2);
+            }
+            if (sUnit > 0) {
+                let qtyS = Math.floor((parseFloat(sValInput.value) / sUnit * 1000) / 25) * 25;
+                sQtyInput.value = qtyS;
+                sValInput.dataset.real = (qtyS / 1000 * sUnit).toFixed(2);
             }
         }
-        updateMargin(s);
     }
 
-    function finalizeTotal(e) { if (e.target.dataset.realValue) e.target.value = e.target.dataset.realValue; }
-    ['buyTotalDeus', 'saleTotalDeus', 'buyTotalRubin', 'saleTotalRubin'].forEach(id => document.getElementById(id).addEventListener('blur', finalizeTotal));
-
-    function updateMargin(s) {
-        const b = parseFloat(document.getElementById('buyUnit' + s).value) || 0;
-        const v = parseFloat(document.getElementById('saleUnit' + s).value) || 0;
-        const diff = v - b;
-        const perc = b > 0 ? (diff / b * 100).toFixed(2) : 0;
-        const el = document.getElementById('margin' + s);
-        el.innerText = `MARGEM: R$ ${diff.toFixed(2)}/1k (${perc}%)`;
-        el.className = `margin-footer ${diff >= 0 ? 'margin-positive' : 'margin-negative'}`;
-    }
-
+    ['buyTotalDeus', 'saleTotalDeus', 'buyTotalRubin', 'saleTotalRubin'].forEach(id => {
+        document.getElementById(id).addEventListener('blur', function() {
+            if (this.dataset.real) this.value = this.dataset.real;
+        });
+    });
+    
     function copyQuote(s, tipo) {
-        const isV = tipo === 'venda';
-        const q = document.getElementById((isV ? 'sale' : 'buy') + 'Qty' + s).value;
-        const t = document.getElementById((isV ? 'sale' : 'buy') + 'Total' + s).value;
-        const msg = `Cotação para ${isV?'vender':'comprar'} coins:\n💎 Quantidade: ${parseFloat(q).toLocaleString('pt-BR')} Coins\n💰 ${isV?'Valor':'Pago Total'}: R$ ${t}`;
+        const isVendaParaCliente = tipo === 'venda';
+        const q = document.getElementById((isVendaParaCliente ? 'sale' : 'buy') + 'Qty' + s).value;
+        const v = document.getElementById((isVendaParaCliente ? 'sale' : 'buy') + 'Total' + s).value;
+        if(!q || !v) return;
+
+        const titulo = isVendaParaCliente ? 
+            `📊 *Simulação para você COMPRAR coins*` : 
+            `📊 *Simulação para você VENDER coins*`;
+
+        const msg = `${titulo}\n\n💎 Qtd: ${parseFloat(q).toLocaleString('pt-BR')} Coins\n💰 Valor Total: R$ ${v}`;
         navigator.clipboard.writeText(msg).then(() => alert("Copiado!"));
     }
 
     function resetCalc(s) {
         document.getElementById('buyUnit'+s).value = defaults[s].buy.toFixed(2);
         document.getElementById('saleUnit'+s).value = defaults[s].sale.toFixed(2);
-        ['buyQty','buyTotal','saleQty','saleTotal'].forEach(id => { document.getElementById(id+s).value = ""; delete document.getElementById(id+s).dataset.realValue; });
-        updateMargin(s);
+        ['buyQty', 'buyTotal', 'saleQty', 'saleTotal'].forEach(id => {
+            const el = document.getElementById(id + s);
+            el.value = "";
+            delete el.dataset.real;
+        });
     }
 
+    function togglePrivacy() { document.querySelectorAll('.val, .amount').forEach(el => el.classList.toggle('blur')); }
+
     load();
-    setInterval(load, 30000);
+    setInterval(load, 60000);
 </script>
 </body>
 </html>
