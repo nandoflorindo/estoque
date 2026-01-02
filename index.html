@@ -44,6 +44,9 @@
         .grid-estoque { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .est-card { border-radius: 8px; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; background: #161616; border: 1px solid #333; border-left-width: 4px; }
         .est-card .amount { font-size: 1.2rem; font-weight: 900; }
+        .est-medias { text-align: right; }
+        .est-pm { font-size: 0.55rem; color: #555; display: block; margin-top: 1px; font-weight: bold; }
+
         .baixo-estoque { color: var(--red) !important; animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
@@ -64,6 +67,8 @@
         .btn-c { background: #112233; color: var(--blue); border: 1px solid var(--blue); margin-top: 3px; }
         .btn-v { background: #113322; color: var(--green); border: 1px solid var(--green); margin-top: 3px; }
         .btn-r { background: #1a0a0a; color: #666; font-size: 0.5rem; padding: 2px 6px; border: 1px solid #333; }
+
+        .lucro-k { display: block; font-size: 0.6rem; color: var(--gold); font-weight: bold; padding: 2px 6px; border-radius: 4px; background: rgba(0,0,0,0.3); }
 
         .dashboard-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .secao-tab { background: var(--card-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; }
@@ -96,18 +101,26 @@
         <div class="card-f"><span class="label">Investido</span><span id="totalGasto" class="val" style="color:var(--red)">R$ 0</span></div>
         <div class="card-f"><span class="label">Recebido</span><span id="totalRecebido" class="val" style="color:var(--green)">R$ 0</span></div>
         <div class="card-f"><span class="label">Lucro</span><span id="lucroTotal" class="val" style="color:var(--gold)">R$ 0</span></div>
-        <div class="card-f"><span class="label">Giro (C)</span><span id="coinsCompradas" class="val">0</span></div>
-        <div class="card-f"><span class="label">Giro (V)</span><span id="coinsVendidas" class="val">0</span></div>
+        <div class="card-f"><span class="label">Coins Compradas</span><span id="coinsCompradas" class="val">0</span></div>
+        <div class="card-f"><span class="label">Coins Vendidas</span><span id="coinsVendidas" class="val">0</span></div>
     </div>
 
     <div class="grid-estoque">
         <div class="est-card" style="border-left-color: var(--deus);">
-            <span style="font-size:0.7rem; font-weight:bold; color:var(--deus)">DEUSOT</span>
-            <span id="estDeus" class="amount">0</span>
+            <div style="flex-grow:1"><span style="font-size:0.7rem; font-weight:bold; color:var(--deus)">DEUSOT</span></div>
+            <div class="est-medias">
+                <span id="estDeus" class="amount">0</span>
+                <span id="pmCDeus" class="est-pm">Média R$ Compra: R$ 0,00</span>
+                <span id="pmVDeus" class="est-pm">Média R$ Venda: R$ 0,00</span>
+            </div>
         </div>
         <div class="est-card" style="border-left-color: var(--rubin);">
-            <span style="font-size:0.7rem; font-weight:bold; color:var(--rubin)">RUBINOT</span>
-            <span id="estRubin" class="amount">0</span>
+            <div style="flex-grow:1"><span style="font-size:0.7rem; font-weight:bold; color:var(--rubin)">RUBINOT</span></div>
+            <div class="est-medias">
+                <span id="estRubin" class="amount">0</span>
+                <span id="pmCRubin" class="est-pm">Média R$ Compra: R$ 0,00</span>
+                <span id="pmVRubin" class="est-pm">Média R$ Venda: R$ 0,00</span>
+            </div>
         </div>
     </div>
 
@@ -115,6 +128,7 @@
         <div class="calc-box">
             <div class="calc-header">
                 <span style="font-size:0.7rem; font-weight:900; color:var(--deus)">DEUSOT</span>
+                <span id="lucroKDeus" class="lucro-k">LUCRO: R$ 0.00/1k</span>
                 <button class="btn-r" onclick="resetCalc('Deus')">RESET</button>
             </div>
             <div class="calc-group">
@@ -142,6 +156,7 @@
         <div class="calc-box">
             <div class="calc-header">
                 <span style="font-size:0.7rem; font-weight:900; color:var(--rubin)">RUBINOT</span>
+                <span id="lucroKRubin" class="lucro-k">LUCRO: R$ 0.00/1k</span>
                 <button class="btn-r" onclick="resetCalc('Rubin')">RESET</button>
             </div>
             <div class="calc-group">
@@ -182,6 +197,9 @@
         try {
             const res = await fetch(API_URL);
             DATA_MASTER = await res.json();
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dateStart').value = today;
+            document.getElementById('dateEnd').value = today;
             applyGlobalFilter();
         } catch (e) { console.error(e); }
     }
@@ -206,6 +224,7 @@
         if (!DATA_MASTER) return;
         const start = document.getElementById('dateStart').value;
         const end = document.getElementById('dateEnd').value;
+        
         const filtrar = (l) => l.filter(i => {
             const d = i.data.split('T')[0];
             return (!start || d >= start) && (!end || d <= end);
@@ -229,6 +248,18 @@
             const el = document.getElementById('est' + serv);
             el.innerText = val.toLocaleString('pt-BR');
             el.classList.toggle('baixo-estoque', val < 2000);
+            
+            const comprasMaster = DATA_MASTER.compras.filter(c => c.servidor.toLowerCase().includes(serv.toLowerCase()));
+            const totalPago = comprasMaster.reduce((acc, c) => acc + parseFloat(c.total_pago), 0);
+            const totalQtdC = comprasMaster.reduce((acc, c) => acc + parseFloat(c.quantidade), 0);
+            const mediaC = totalQtdC > 0 ? (totalPago / totalQtdC * 1000) : 0;
+            document.getElementById('pmC' + serv).innerText = `Média R$ Compra: R$ ${mediaC.toFixed(3)}`;
+
+            const vendasMaster = DATA_MASTER.vendas.filter(v => v.servidor.toLowerCase().includes(serv.toLowerCase()));
+            const totalRec = vendasMaster.reduce((acc, v) => acc + parseFloat(v.total_recebido), 0);
+            const totalQtdV = vendasMaster.reduce((acc, v) => acc + parseFloat(v.quantidade), 0);
+            const mediaV = totalQtdV > 0 ? (totalRec / totalQtdV * 1000) : 0;
+            document.getElementById('pmV' + serv).innerText = `Média R$ Venda: R$ ${mediaV.toFixed(3)}`;
         });
 
         const row = (i, f) => {
@@ -239,6 +270,8 @@
         };
         document.querySelector("#tabCompras tbody").innerHTML = cF.slice(0, 8).map(c => row(c, 'total_pago')).join('');
         document.querySelector("#tabVendas tbody").innerHTML = vF.slice(0, 8).map(v => row(v, 'total_recebido')).join('');
+        
+        calculate('Deus', 'Q'); calculate('Rubin', 'Q');
     }
 
     function calculate(s, modo) {
@@ -248,6 +281,13 @@
         const bValInput = document.getElementById('buyTotal' + s);
         const sQtyInput = document.getElementById('saleQty' + s);
         const sValInput = document.getElementById('saleTotal' + s);
+
+        const lucroK = (sUnit - bUnit).toFixed(2);
+        const elLucro = document.getElementById('lucroK' + s);
+        elLucro.innerText = `LUCRO: R$ ${lucroK}/1k`;
+        if (lucroK >= 8) elLucro.style.color = 'var(--green)';
+        else if (lucroK >= 4) elLucro.style.color = 'var(--gold)';
+        else elLucro.style.color = 'var(--red)';
 
         if (modo === 'Q') {
             bValInput.value = (parseFloat(bQtyInput.value) / 1000 * bUnit).toFixed(2);
@@ -277,11 +317,7 @@
         const q = document.getElementById((isVendaParaCliente ? 'sale' : 'buy') + 'Qty' + s).value;
         const v = document.getElementById((isVendaParaCliente ? 'sale' : 'buy') + 'Total' + s).value;
         if(!q || !v) return;
-
-        const titulo = isVendaParaCliente ? 
-            `📊 *Simulação para você COMPRAR coins*` : 
-            `📊 *Simulação para você VENDER coins*`;
-
+        const titulo = isVendaParaCliente ? `📊 *Simulação para você COMPRAR coins*` : `📊 *Simulação para você VENDER coins*`;
         const msg = `${titulo}\n\n💎 Qtd: ${parseFloat(q).toLocaleString('pt-BR')} Coins\n💰 Valor Total: R$ ${v}`;
         navigator.clipboard.writeText(msg).then(() => alert("Copiado!"));
     }
@@ -294,9 +330,10 @@
             el.value = "";
             delete el.dataset.real;
         });
+        calculate(s, 'Q');
     }
 
-    function togglePrivacy() { document.querySelectorAll('.val, .amount').forEach(el => el.classList.toggle('blur')); }
+    function togglePrivacy() { document.querySelectorAll('.val, .amount, .est-pm').forEach(el => el.classList.toggle('blur')); }
 
     load();
     setInterval(load, 60000);
