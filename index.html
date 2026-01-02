@@ -197,9 +197,7 @@
         try {
             const res = await fetch(API_URL);
             DATA_MASTER = await res.json();
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('dateStart').value = today;
-            document.getElementById('dateEnd').value = today;
+            // Removido o filtro automático de hoje para exibir o total acumulado ao abrir
             applyGlobalFilter();
         } catch (e) { console.error(e); }
     }
