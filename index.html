@@ -197,7 +197,6 @@
         try {
             const res = await fetch(API_URL);
             DATA_MASTER = await res.json();
-            // Removido o filtro automático de hoje para exibir o total acumulado ao abrir
             applyGlobalFilter();
         } catch (e) { console.error(e); }
     }
@@ -264,7 +263,12 @@
             const sName = i.servidor.toLowerCase().includes('deus') ? 'DeusOT' : 'RubinOT';
             const qty = parseFloat(i.quantidade);
             const displayQty = qty < 1000 ? qty.toString() : (qty / 1000).toFixed(1) + 'k';
-            return `<tr><td style="color:#444;font-size:0.6rem">${i.data.split('T')[0].slice(5)}</td><td style="font-weight:bold;color:${i.servidor.toLowerCase().includes('deus')?'var(--deus)':'var(--rubin)'}">${sName}</td><td class="val">${displayQty}</td><td class="val">R$${parseFloat(i[f]).toFixed(0)}</td></tr>`;
+            
+            // FORMATAÇÃO DA DATA PARA PADRÃO BRASILEIRO (DD/MM)
+            const partesData = i.data.split('T')[0].split('-');
+            const dataBR = `${partesData[2]}/${partesData[1]}`;
+
+            return `<tr><td style="color:#444;font-size:0.6rem">${dataBR}</td><td style="font-weight:bold;color:${i.servidor.toLowerCase().includes('deus')?'var(--deus)':'var(--rubin)'}">${sName}</td><td class="val">${displayQty}</td><td class="val">R$${parseFloat(i[f]).toFixed(0)}</td></tr>`;
         };
         document.querySelector("#tabCompras tbody").innerHTML = cF.slice(0, 8).map(c => row(c, 'total_pago')).join('');
         document.querySelector("#tabVendas tbody").innerHTML = vF.slice(0, 8).map(v => row(v, 'total_recebido')).join('');
