@@ -9,76 +9,45 @@
             --gold: #DAA520; --dark-bg: #0a0a0a; --card-bg: #161616; --border: #333;
             --deus: #DAA520; --rubin: #a970ff; --green: #00e676; --red: #ff4b4b; --blue: #00d4ff;
         }
-        
         body { background: var(--dark-bg); color: #e0e0e0; font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 15px; }
         .container { max-width: 1100px; margin: auto; }
-        
-        .header-main { 
-            display: flex; justify-content: space-between; align-items: center; 
-            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #222;
-        }
+        .header-main { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #222; }
         .header-main h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin: 0; font-size: 1.2rem; font-weight: 900; }
-
         .header-actions { display: flex; gap: 8px; align-items: center; }
-        #loader { 
-            width: 14px; height: 14px; border: 2px solid #333; border-top: 2px solid var(--gold); 
-            border-radius: 50%; display: none; animation: spin 0.8s linear infinite; 
-        }
+        #loader { width: 14px; height: 14px; border: 2px solid #333; border-top: 2px solid var(--gold); border-radius: 50%; display: none; animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-
-        .filter-bar { 
-            display: flex; align-items: center; justify-content: center; gap: 8px; 
-            background: #111; padding: 8px; border-radius: 8px; border: 1px solid #222; margin-bottom: 20px;
-        }
-        .filter-bar input { 
-            background: transparent; border: 1px solid #333; color: #fff; font-size: 0.75rem; 
-            padding: 4px; border-radius: 4px; color-scheme: dark; outline: none;
-        }
-        .btn-mini { 
-            background: #222; border: 1px solid #333; color: #888; padding: 4px 8px; 
-            font-size: 0.65rem; border-radius: 4px; cursor: pointer; text-transform: uppercase;
-        }
+        .filter-bar { display: flex; align-items: center; justify-content: center; gap: 8px; background: #111; padding: 8px; border-radius: 8px; border: 1px solid #222; margin-bottom: 20px; }
+        .filter-bar input { background: transparent; border: 1px solid #333; color: #fff; font-size: 0.75rem; padding: 4px; border-radius: 4px; color-scheme: dark; outline: none; }
+        .btn-mini { background: #222; border: 1px solid #333; color: #888; padding: 4px 8px; font-size: 0.65rem; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
         .btn-mini:hover { color: #fff; border-color: var(--gold); }
         .btn-mini.red { color: #ff4b4b; border-color: #441111; }
-
         .grid-financeiro { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 15px; }
         .card-f { background: var(--card-bg); border: 1px solid var(--border); padding: 12px; text-align: center; border-radius: 8px; }
         .card-f .label { font-size: 0.6rem; text-transform: uppercase; color: #666; margin-bottom: 4px; display: block; }
         .card-f .val { font-size: 1rem; font-weight: 800; }
-
         .grid-estoque { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .est-card { border-radius: 8px; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; background: #161616; border: 1px solid #333; border-left-width: 4px; }
         .est-card .amount { font-size: 1.2rem; font-weight: 900; }
         .est-medias { text-align: right; }
         .est-pm { font-size: 0.55rem; color: #555; display: block; margin-top: 1px; font-weight: bold; }
-
         .blur { filter: blur(10px); opacity: 0.2; pointer-events: none; }
         .calc-section { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
         .calc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
         .calc-header { padding: 8px 15px; background: #000; display: flex; justify-content: space-between; align-items: center; }
         .calc-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
         .calc-sub { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; border: 1px solid #222; text-align: center; }
-        
         .calc-sub label { display: block; font-size: 0.55rem; color: #666; text-transform: uppercase; margin-bottom: 3px; font-weight: bold; }
-        
-        input[type="number"] { 
-            width: 100%; padding: 6px; background: #0a0a0a; border: 1px solid #333; 
-            color: #fff; border-radius: 4px; text-align: center; font-weight: bold; font-size: 0.85rem; margin-bottom: 4px;
-        }
-
+        input[type="number"] { width: 100%; padding: 6px; background: #0a0a0a; border: 1px solid #333; color: #fff; border-radius: 4px; text-align: center; font-weight: bold; font-size: 0.85rem; margin-bottom: 4px; }
         .btn-action { width: 100%; border: none; padding: 6px; border-radius: 4px; font-size: 0.6rem; font-weight: bold; cursor: pointer; text-transform: uppercase; }
         .btn-c { background: #112233; color: var(--blue); border: 1px solid var(--blue); margin-top: 3px; }
         .btn-v { background: #113322; color: var(--green); border: 1px solid var(--green); margin-top: 3px; }
         .btn-r { background: #1a0a0a; color: #666; font-size: 0.5rem; padding: 2px 6px; border: 1px solid #333; }
-
         .lucro-k { display: block; font-size: 0.6rem; color: var(--gold); font-weight: bold; padding: 2px 6px; border-radius: 4px; background: rgba(0,0,0,0.3); }
-
         .dashboard-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .secao-tab { background: var(--card-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; }
         .secao-tab h2 { font-size: 0.7rem; color: #555; text-transform: uppercase; margin-top: 0; }
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         td { padding: 8px; border-bottom: 1px solid #222; }
-
         @media (max-width: 800px) { .grid-financeiro { grid-template-columns: 1fr 1fr; } .calc-section { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -158,7 +127,6 @@
                 </div>
             </div>
         </div>
-
         <div class="calc-box">
             <div class="calc-header">
                 <span style="font-size:0.7rem; font-weight:900; color:var(--rubin)">RUBINOT</span>
@@ -206,7 +174,7 @@
             const res = await fetch(API_URL);
             DATA_MASTER = await res.json();
             applyGlobalFilter();
-        } catch (e) { console.error(e); }
+        } catch (e) { console.error("Erro no load:", e); }
         finally { loader.style.display = 'none'; }
     }
 
@@ -216,6 +184,7 @@
         const end = document.getElementById('dateEnd').value;
         
         const filtrar = (l) => l.filter(i => {
+            if(!i.data) return false;
             const d = i.data.split('T')[0];
             return (!start || d >= start) && (!end || d <= end);
         });
@@ -223,8 +192,15 @@
         const cF = filtrar(DATA_MASTER.compras);
         const vF = filtrar(DATA_MASTER.vendas);
         let inv=0, rec=0, gC=0, gV=0;
-        cF.forEach(c => { inv += parseFloat(c.total_pago); gC += parseFloat(c.quantidade); });
-        vF.forEach(v => { rec += parseFloat(v.total_recebido); gV += parseFloat(v.quantidade); });
+
+        cF.forEach(c => { 
+            inv += parseFloat(c.total_pago || 0); 
+            gC += parseFloat(c.quantidade || 0); 
+        });
+        vF.forEach(v => { 
+            rec += parseFloat(v.total_recebido || 0); 
+            gV += parseFloat(v.quantidade || 0); 
+        });
 
         document.getElementById('totalGasto').innerText = inv.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
         document.getElementById('totalRecebido').innerText = rec.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
@@ -234,34 +210,39 @@
 
         DATA_MASTER.resumo.forEach(r => {
             const serv = r.servidor.toLowerCase().includes("deus") ? "Deus" : "Rubin";
-            const val = parseFloat(r.estoque_atual);
+            const val = parseFloat(r.estoque_atual || 0);
             const el = document.getElementById('est' + serv);
-            el.innerText = val.toLocaleString('pt-BR');
-            el.classList.toggle('baixo-estoque', val < 2000);
+            if(el) {
+                el.innerText = val.toLocaleString('pt-BR');
+                el.classList.toggle('baixo-estoque', val < 2000);
+            }
             
-            const comprasMaster = DATA_MASTER.compras.filter(c => c.servidor.toLowerCase().includes(serv.toLowerCase()));
-            const totalPago = comprasMaster.reduce((acc, c) => acc + parseFloat(c.total_pago), 0);
-            const totalQtdC = comprasMaster.reduce((acc, c) => acc + parseFloat(c.quantidade), 0);
+            const comprasMaster = DATA_MASTER.compras.filter(c => c.servidor && c.servidor.toLowerCase().includes(serv.toLowerCase()));
+            const totalPago = comprasMaster.reduce((acc, c) => acc + parseFloat(c.total_pago || 0), 0);
+            const totalQtdC = comprasMaster.reduce((acc, c) => acc + parseFloat(c.quantidade || 0), 0);
             const mediaC = totalQtdC > 0 ? (totalPago / totalQtdC * 1000) : 0;
-            document.getElementById('pmC' + serv).innerText = `Média Compra: R$ ${mediaC.toFixed(2)}`;
+            const elPmC = document.getElementById('pmC' + serv);
+            if(elPmC) elPmC.innerText = `Média Compra: R$ ${mediaC.toFixed(2)}`;
 
-            const vendasMaster = DATA_MASTER.vendas.filter(v => v.servidor.toLowerCase().includes(serv.toLowerCase()));
-            const totalRec = vendasMaster.reduce((acc, v) => acc + parseFloat(v.total_recebido), 0);
-            const totalQtdV = vendasMaster.reduce((acc, v) => acc + parseFloat(v.quantidade), 0);
+            const vendasMaster = DATA_MASTER.vendas.filter(v => v.servidor && v.servidor.toLowerCase().includes(serv.toLowerCase()));
+            const totalRec = vendasMaster.reduce((acc, v) => acc + parseFloat(v.total_recebido || 0), 0);
+            const totalQtdV = vendasMaster.reduce((acc, v) => acc + parseFloat(v.quantidade || 0), 0);
             const mediaV = totalQtdV > 0 ? (totalRec / totalQtdV * 1000) : 0;
-            document.getElementById('pmV' + serv).innerText = `Média Venda: R$ ${mediaV.toFixed(2)}`;
+            const elPmV = document.getElementById('pmV' + serv);
+            if(elPmV) elPmV.innerText = `Média Venda: R$ ${mediaV.toFixed(2)}`;
         });
 
-        const row = (i, f) => {
+        const rowHTML = (i, f) => {
+            if(!i.servidor) return "";
             const sName = i.servidor.toLowerCase().includes('deus') ? 'DeusOT' : 'RubinOT';
-            const qty = parseFloat(i.quantidade);
+            const qty = parseFloat(i.quantidade || 0);
             const displayQty = qty < 1000 ? qty.toString() : (qty / 1000).toFixed(1) + 'k';
             const partesData = i.data.split('T')[0].split('-');
             const dataBR = `${partesData[2]}/${partesData[1]}`;
-            return `<tr><td style="color:#444;font-size:0.6rem">${dataBR}</td><td style="font-weight:bold;color:${i.servidor.toLowerCase().includes('deus')?'var(--deus)':'var(--rubin)'}">${sName}</td><td class="val">${displayQty}</td><td class="val">R$${parseFloat(i[f]).toFixed(0)}</td></tr>`;
+            return `<tr><td style="color:#444;font-size:0.6rem">${dataBR}</td><td style="font-weight:bold;color:${i.servidor.toLowerCase().includes('deus')?'var(--deus)':'var(--rubin)'}">${sName}</td><td class="val">${displayQty}</td><td class="val">R$${parseFloat(i[f] || 0).toFixed(0)}</td></tr>`;
         };
-        document.querySelector("#tabCompras tbody").innerHTML = cF.slice(0, 8).map(c => row(c, 'total_pago')).join('');
-        document.querySelector("#tabVendas tbody").innerHTML = vF.slice(0, 8).map(v => row(v, 'total_recebido')).join('');
+        document.querySelector("#tabCompras tbody").innerHTML = cF.slice(0, 8).map(c => rowHTML(c, 'total_pago')).join('');
+        document.querySelector("#tabVendas tbody").innerHTML = vF.slice(0, 8).map(v => rowHTML(v, 'total_recebido')).join('');
         
         calculate('Deus', 'Q'); calculate('Rubin', 'Q');
     }
@@ -276,21 +257,23 @@
 
         const lucroK = (sUnit - bUnit).toFixed(2);
         const elLucro = document.getElementById('lucroK' + s);
-        elLucro.innerText = `LUCRO: R$ ${lucroK}/1k`;
-        if (lucroK >= 8) elLucro.style.color = 'var(--green)';
-        else if (lucroK >= 4) elLucro.style.color = 'var(--gold)';
-        else elLucro.style.color = 'var(--red)';
+        if(elLucro) {
+            elLucro.innerText = `LUCRO: R$ ${lucroK}/1k`;
+            if (lucroK >= 8) elLucro.style.color = 'var(--green)';
+            else if (lucroK >= 4) elLucro.style.color = 'var(--gold)';
+            else elLucro.style.color = 'var(--red)';
+        }
 
         if (modo === 'Q') {
-            bValInput.value = (parseFloat(bQtyInput.value) / 1000 * bUnit).toFixed(2);
-            sValInput.value = (parseFloat(sQtyInput.value) / 1000 * sUnit).toFixed(2);
+            bValInput.value = (parseFloat(bQtyInput.value || 0) / 1000 * bUnit).toFixed(2);
+            sValInput.value = (parseFloat(sQtyInput.value || 0) / 1000 * sUnit).toFixed(2);
         } else {
             if (bUnit > 0) {
-                let qtyB = Math.floor((parseFloat(bValInput.value) / bUnit * 1000) / 25) * 25;
+                let qtyB = Math.floor((parseFloat(bValInput.value || 0) / bUnit * 1000) / 25) * 25;
                 bQtyInput.value = qtyB;
             }
             if (sUnit > 0) {
-                let qtyS = Math.floor((parseFloat(sValInput.value) / sUnit * 1000) / 25) * 25;
+                let qtyS = Math.floor((parseFloat(sValInput.value || 0) / sUnit * 1000) / 25) * 25;
                 sQtyInput.value = qtyS;
             }
         }
@@ -299,10 +282,19 @@
     function setPeriod(mode) {
         const s = document.getElementById('dateStart');
         const e = document.getElementById('dateEnd');
-        const today = new Date().toISOString().split('T')[0];
-        e.value = today;
-        if (mode === 'today') s.value = today;
-        else { let d = new Date(); d.setDate(d.getDate()-7); s.value = d.toISOString().split('T')[0]; }
+        const agora = new Date();
+        const offset = agora.getTimezoneOffset() * 60000;
+        const dataLocal = new Date(agora - offset).toISOString().split('T')[0];
+
+        e.value = dataLocal;
+        if (mode === 'today') {
+            s.value = dataLocal;
+        } else {
+            let d = new Date();
+            d.setDate(d.getDate() - 7);
+            const dataPassada = new Date(d - offset).toISOString().split('T')[0];
+            s.value = dataPassada;
+        }
         applyGlobalFilter();
     }
 
@@ -324,11 +316,16 @@
     function resetCalc(s) {
         document.getElementById('buyUnit'+s).value = defaults[s].buy.toFixed(2);
         document.getElementById('saleUnit'+s).value = defaults[s].sale.toFixed(2);
-        ['buyQty', 'buyTotal', 'saleQty', 'saleTotal'].forEach(id => document.getElementById(id + s).value = "");
+        ['buyQty', 'buyTotal', 'saleQty', 'saleTotal'].forEach(id => {
+            const el = document.getElementById(id + s);
+            if(el) el.value = "";
+        });
         calculate(s, 'Q');
     }
 
-    function togglePrivacy() { document.querySelectorAll('.val, .amount').forEach(el => el.classList.toggle('blur')); }
+    function togglePrivacy() { 
+        document.querySelectorAll('.val, .amount').forEach(el => el.classList.toggle('blur')); 
+    }
 
     load();
     setInterval(load, 60000);
