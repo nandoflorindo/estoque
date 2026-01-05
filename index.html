@@ -9,45 +9,76 @@
             --gold: #DAA520; --dark-bg: #0a0a0a; --card-bg: #161616; --border: #333;
             --deus: #DAA520; --rubin: #a970ff; --green: #00e676; --red: #ff4b4b; --blue: #00d4ff;
         }
+        
         body { background: var(--dark-bg); color: #e0e0e0; font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 15px; }
         .container { max-width: 1100px; margin: auto; }
-        .header-main { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #222; }
+        
+        .header-main { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #222;
+        }
         .header-main h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin: 0; font-size: 1.2rem; font-weight: 900; }
+
         .header-actions { display: flex; gap: 8px; align-items: center; }
-        #loader { width: 14px; height: 14px; border: 2px solid #333; border-top: 2px solid var(--gold); border-radius: 50%; display: none; animation: spin 0.8s linear infinite; }
+        #loader { 
+            width: 14px; height: 14px; border: 2px solid #333; border-top: 2px solid var(--gold); 
+            border-radius: 50%; display: none; animation: spin 0.8s linear infinite; 
+        }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .filter-bar { display: flex; align-items: center; justify-content: center; gap: 8px; background: #111; padding: 8px; border-radius: 8px; border: 1px solid #222; margin-bottom: 20px; }
-        .filter-bar input { background: transparent; border: 1px solid #333; color: #fff; font-size: 0.75rem; padding: 4px; border-radius: 4px; color-scheme: dark; outline: none; }
-        .btn-mini { background: #222; border: 1px solid #333; color: #888; padding: 4px 8px; font-size: 0.65rem; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
+
+        .filter-bar { 
+            display: flex; align-items: center; justify-content: center; gap: 8px; 
+            background: #111; padding: 8px; border-radius: 8px; border: 1px solid #222; margin-bottom: 20px;
+        }
+        .filter-bar input { 
+            background: transparent; border: 1px solid #333; color: #fff; font-size: 0.75rem; 
+            padding: 4px; border-radius: 4px; color-scheme: dark; outline: none;
+        }
+        .btn-mini { 
+            background: #222; border: 1px solid #333; color: #888; padding: 4px 8px; 
+            font-size: 0.65rem; border-radius: 4px; cursor: pointer; text-transform: uppercase;
+        }
         .btn-mini:hover { color: #fff; border-color: var(--gold); }
         .btn-mini.red { color: #ff4b4b; border-color: #441111; }
+
         .grid-financeiro { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 15px; }
         .card-f { background: var(--card-bg); border: 1px solid var(--border); padding: 12px; text-align: center; border-radius: 8px; }
         .card-f .label { font-size: 0.6rem; text-transform: uppercase; color: #666; margin-bottom: 4px; display: block; }
         .card-f .val { font-size: 1rem; font-weight: 800; }
+
         .grid-estoque { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .est-card { border-radius: 8px; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; background: #161616; border: 1px solid #333; border-left-width: 4px; }
         .est-card .amount { font-size: 1.2rem; font-weight: 900; }
         .est-medias { text-align: right; }
         .est-pm { font-size: 0.55rem; color: #555; display: block; margin-top: 1px; font-weight: bold; }
+
         .blur { filter: blur(10px); opacity: 0.2; pointer-events: none; }
         .calc-section { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
         .calc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
         .calc-header { padding: 8px 15px; background: #000; display: flex; justify-content: space-between; align-items: center; }
         .calc-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
         .calc-sub { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; border: 1px solid #222; text-align: center; }
+        
         .calc-sub label { display: block; font-size: 0.55rem; color: #666; text-transform: uppercase; margin-bottom: 3px; font-weight: bold; }
-        input[type="number"] { width: 100%; padding: 6px; background: #0a0a0a; border: 1px solid #333; color: #fff; border-radius: 4px; text-align: center; font-weight: bold; font-size: 0.85rem; margin-bottom: 4px; }
+        
+        input[type="number"] { 
+            width: 100%; padding: 6px; background: #0a0a0a; border: 1px solid #333; 
+            color: #fff; border-radius: 4px; text-align: center; font-weight: bold; font-size: 0.85rem; margin-bottom: 4px;
+        }
+
         .btn-action { width: 100%; border: none; padding: 6px; border-radius: 4px; font-size: 0.6rem; font-weight: bold; cursor: pointer; text-transform: uppercase; }
         .btn-c { background: #112233; color: var(--blue); border: 1px solid var(--blue); margin-top: 3px; }
         .btn-v { background: #113322; color: var(--green); border: 1px solid var(--green); margin-top: 3px; }
         .btn-r { background: #1a0a0a; color: #666; font-size: 0.5rem; padding: 2px 6px; border: 1px solid #333; }
+
         .lucro-k { display: block; font-size: 0.6rem; color: var(--gold); font-weight: bold; padding: 2px 6px; border-radius: 4px; background: rgba(0,0,0,0.3); }
+
         .dashboard-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .secao-tab { background: var(--card-bg); border: 1px solid var(--border); padding: 15px; border-radius: 8px; }
         .secao-tab h2 { font-size: 0.7rem; color: #555; text-transform: uppercase; margin-top: 0; }
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         td { padding: 8px; border-bottom: 1px solid #222; }
+
         @media (max-width: 800px) { .grid-financeiro { grid-template-columns: 1fr 1fr; } .calc-section { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -73,9 +104,9 @@
     </div>
 
     <div class="grid-financeiro">
-        <div class="card-f"><span class="label">Investido</span><span id="totalGasto" class="val" style="color:var(--red)">R$ 0</span></div>
-        <div class="card-f"><span class="label">Recebido</span><span id="totalRecebido" class="val" style="color:var(--green)">R$ 0</span></div>
-        <div class="card-f"><span class="label">Lucro</span><span id="lucroTotal" class="val" style="color:var(--gold)">R$ 0</span></div>
+        <div class="card-f"><span class="label">Investido</span><span id="totalGasto" class="val" style="color:var(--red)">R$ 0,00</span></div>
+        <div class="card-f"><span class="label">Recebido</span><span id="totalRecebido" class="val" style="color:var(--green)">R$ 0,00</span></div>
+        <div class="card-f"><span class="label">Lucro</span><span id="lucroTotal" class="val" style="color:var(--gold)">R$ 0,00</span></div>
         <div class="card-f"><span class="label">Compradas</span><span id="coinsCompradas" class="val">0</span></div>
         <div class="card-f"><span class="label">Vendidas</span><span id="coinsVendidas" class="val">0</span></div>
     </div>
@@ -127,6 +158,7 @@
                 </div>
             </div>
         </div>
+
         <div class="calc-box">
             <div class="calc-header">
                 <span style="font-size:0.7rem; font-weight:900; color:var(--rubin)">RUBINOT</span>
@@ -202,9 +234,9 @@
             gV += parseFloat(v.quantidade || 0); 
         });
 
-        document.getElementById('totalGasto').innerText = inv.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
-        document.getElementById('totalRecebido').innerText = rec.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
-        document.getElementById('lucroTotal').innerText = (rec - inv).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+        document.getElementById('totalGasto').innerText = inv.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.getElementById('totalRecebido').innerText = rec.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.getElementById('lucroTotal').innerText = (rec - inv).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         document.getElementById('coinsCompradas').innerText = gC.toLocaleString('pt-BR');
         document.getElementById('coinsVendidas').innerText = gV.toLocaleString('pt-BR');
 
@@ -239,7 +271,8 @@
             const displayQty = qty < 1000 ? qty.toString() : (qty / 1000).toFixed(1) + 'k';
             const partesData = i.data.split('T')[0].split('-');
             const dataBR = `${partesData[2]}/${partesData[1]}`;
-            return `<tr><td style="color:#444;font-size:0.6rem">${dataBR}</td><td style="font-weight:bold;color:${i.servidor.toLowerCase().includes('deus')?'var(--deus)':'var(--rubin)'}">${sName}</td><td class="val">${displayQty}</td><td class="val">R$${parseFloat(i[f] || 0).toFixed(0)}</td></tr>`;
+            // CORREÇÃO: .toFixed(2) para centavos exatos
+            return `<tr><td style="color:#444;font-size:0.6rem">${dataBR}</td><td style="font-weight:bold;color:${i.servidor.toLowerCase().includes('deus')?'var(--deus)':'var(--rubin)'}">${sName}</td><td class="val">${displayQty}</td><td class="val">R$ ${parseFloat(i[f] || 0).toFixed(2)}</td></tr>`;
         };
         document.querySelector("#tabCompras tbody").innerHTML = cF.slice(0, 8).map(c => rowHTML(c, 'total_pago')).join('');
         document.querySelector("#tabVendas tbody").innerHTML = vF.slice(0, 8).map(v => rowHTML(v, 'total_recebido')).join('');
@@ -279,6 +312,7 @@
         }
     }
 
+    // CORREÇÃO: Ajuste de fuso horário local
     function setPeriod(mode) {
         const s = document.getElementById('dateStart');
         const e = document.getElementById('dateEnd');
